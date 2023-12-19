@@ -1,0 +1,62 @@
+<h1>Admin Panel</h1>
+<form action="/add-post" method="post" enctype="multipart/form-data">
+  <label for="title">Title:</label>
+  <input type="text" name="title" required><br>
+  <label for="content">Content:</label>
+  <textarea name="content" required></textarea><br>
+  <label for="image">Image:</label>
+  <input type="file" name="image" required><br>
+  <label for="metatitle">Meta Title:</label>
+  <input type="text" name="metatitle" required><br>
+  <label for="metadescription">Meta Description:</label> 
+   <textarea name="metadescription" required></textarea><br> 
+   <label for="slug">Slug:</label>
+<input type="text" name="slug" required><br>
+  <button type="submit">Add Post</button>
+</form>
+
+<% posts.forEach((post, index) => { %>
+  <div>
+    <h2><%= post.title %></h2>
+    <p><%= post.content %></p>
+    <!-- <img src="<%= post.image %>" alt="Post Image"> -->
+    <img src="data:image/jpeg;base64, <%= post.image %>" alt="Post Image">
+    
+
+
+    <form action="/update-post/<%= post._id %>" method="post" enctype="multipart/form-data">
+      <label for="title">Title:</label>
+      <input type="text" name="title" value="<%= post.title %>" required><br>
+      <label for="content">Content:</label>
+      <textarea name="content" required><%= post.content %></textarea><br>
+      <!-- <label for="image">Image:</label>
+      <input type="file" name="image" accept="image/*"><br> -->
+
+      <label for="metatitle">Meta Title:</label>
+      <input type="text" name="metatitle" value="<%= post.metatitle %>" required><br>
+      <label for="metadescription">Meta Description:</label>
+      <textarea name="metadescription" required><%= post.metadescription %></textarea><br>
+
+      <label for="slug">Slug:</label>
+      <input type="text" name="slug" value="<%= post.slug %>" required><br>
+
+
+      <button type="submit">Update</button>
+    </form>
+
+    <form id="<%= post._id %>" action="/delete-post/<%= post._id %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <button type="submit">Delete</button>
+    </form>
+
+<!-- 
+    <form id="<%= post._id %>" action="/delete-post/<%= post._id %>" method="post" >
+      <button type="submit">Delete</button>
+    </form> -->
+
+
+  </div>
+  
+
+<% }); %>
+
