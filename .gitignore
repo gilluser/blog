@@ -1,0 +1,18 @@
+# Node.js
+node_modules/
+
+# Dependency directories
+/public/styles.css
+/dist/
+
+# Logs
+logs/
+*.log
+
+# Environment variables
+.env
+
+# macOS
+.DS_Store
+
+# Editor directories
